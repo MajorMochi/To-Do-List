@@ -1,0 +1,87 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+struct node
+{
+    int data;
+    node *next;
+};
+
+class list
+{
+private:
+    int list_size, i=0;
+    string tasks[10][10];
+public:
+    list(int s)
+    {
+        list_size=s;
+    }
+
+    void add(string t)
+    {
+        tasks[i][0]=t;
+        i++;
+    }
+
+    void edit(int n, string t)
+    {
+        tasks[n][0] = t;
+    }
+
+    void status_update(int n, char s)
+    {
+        tasks[n][n]=s;
+    }
+
+    void delete_task (int n)
+    {
+        delete tasks[n][0];
+    }
+};
+
+int main()
+{
+    int length, inp, t;
+    string task;
+    char s;
+    cout<<"How long do you want the list to be:";
+    cin>>length;
+
+    list list1(length);
+
+    cout<<"1.Add"<<endl<<"2.Edit"<<endl<<"3.Status"<<endl<<"4.Delete"<<endl<<"0.Exit";
+    cout<<"------------------------------------------------------------"endl;
+    while(inp!=0)
+    {
+        if(inp==1)
+        {
+            cout<<"Enter task:";
+            cin>>task;
+            list1.add(task);
+        }
+
+        if(inp==2)
+        {
+            cout<<"task you would like to edit & the new task:";
+            cin>>t>>task;
+            list1.edit(t,task);
+        }
+        if(inp==3)
+        {
+            cout<<"Enter Task number and Status:"endl;
+            cin>>t>>s;
+            list1.status_update(t,s);
+        }
+        if(inp == 4)
+        {
+            cout<<"Enter the task that you would like to delete:";
+            cin<<t;
+            list1.delete(t);
+        }
+    }
+
+}
